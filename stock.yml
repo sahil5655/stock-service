@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techefx-product-stock-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: techefx-product-stock-service
+  template:
+    metadata:
+      labels:
+        app: techefx-product-stock-service
+        tier: backend
+        track: stable
+    spec:
+      containers:
+        - name: stock-service
+          image: "techefx-product-stock-service:latest"
+          imagePullPolicy: Never
+          ports:
+            - name: stock-port
+              containerPort: 8800
